@@ -17,3 +17,10 @@ The aim of the project is to develop an interactive choropleth of COVID-19 measu
 * Chart shading - shade chart using county level covid data - 30
 * Timeline visualization - alter chart to show covid data over time - 20
 * Additional measure toggles - add toggles to chart additional covid metrics besides cases - 10
+
+## References
+* Choropleth U.S. county map: http://bl.ocks.org/jadiehm/af4a00140c213dfbc4e6
+* geoAlbersUsa: https://bl.ocks.org/rveciana/ee2119324e835e1bad42d0e4c1b9ab0d
+* Date slider: https://bl.ocks.org/officeofjane/47d2b0bfeecfcb41d2212d06d095c763
+* USA state map: http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922
+* Sam's Personal COVID-19 Dashboard: https://github.com/parmsam/covid-19-dashboard
