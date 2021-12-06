@@ -1,4 +1,4 @@
-/ set the dimensions and margins of the graph
+// set the dimensions and margins of the graph
 var margin = {top: 0, right: 0, bottom: 0, left:0},
     width = 875;
     height = 622;
