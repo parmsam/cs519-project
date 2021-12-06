@@ -3,6 +3,7 @@
 <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Recursive" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
   <head>
     <meta charset="utf-8">
@@ -12,13 +13,15 @@
   </head>
 
   <body>
-    <h1 class="Page1_title"> COVID-19 USA Dashboard </h1>
+    <h1 class="Page1_title">COVID-19 USA Dashboard</h1>
+
     <div id="my_dataviz_usa" class="my_dataviz"></div>
-    
+
     <p class="legend_usa"><b>Rate per 100K or 100 CCs</b></p>
     <div id="legend1" class="legend_usa"></div>
+    <br><br><br><br>
     <div id="slider" class="slider"></div>
-    
+
     <div id="vis">
       <button id="play-button">Play from start</button>
     </div>
@@ -34,6 +37,21 @@
     </div>
 
     <script src="usa_map.js"></script>
+    <br><br>
+
+    <div style="text-align: center;  height: 100%; width: 100%; margin:0; font-size: 14px;" >
+      <p style="position: relative; max-width: 50%; margin-left: auto; margin-right: auto">
+        <p style='font-size: 14px'> Webpage designed to be opened in Google Chrome browser.</p>
+      </p>
+    </div>
+
+    <div style="text-align: center;  height: 100%; width: 100%; margin:0; font-size: 13px;" >
+      Date Source:
+      <a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data">JHU CSSE COVID-19 Dataset</a>
+      <br><br>
+      Github Repo:
+      <a href="https://github.com/parmsam/cs519-project">https://github.com/parmsam/cs519-project/</a>
+    </div>
+
   </body>
-  
 </html>
