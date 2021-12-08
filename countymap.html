@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Independent Farms by County - Choropleth</title>
+	<title>Covid Active By County for 12/31/2020 - Choropleth</title>
 	<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
 	<script type="text/javascript" src="https://d3js.org/queue.v1.min.js"></script>
 	<script type="text/javascript" src="https://d3js.org/topojson.v1.min.js"></script> 
@@ -62,7 +62,7 @@
 </style>
 
 <body>
-	<h1>Independent Farms in the USA</h1>
+	<h1>Covid Active by County</h1>
 		 <script type="text/javascript">
 		 var width = 960, height = 600;
 		 var color_domain = [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000]
@@ -85,7 +85,7 @@
 		 
 		queue()
 		 .defer(d3.json, "us.json")
-		 .defer(d3.csv, "data.csv")
+		 .defer(d3.csv, "covid_world.csv")
 		 .await(ready);
 		 
 		function ready(error, us, data) {
@@ -110,9 +110,15 @@
 		};
 
 		data.forEach(function(d) {
-		 pairRateWithId[d.id] = +d.rate;
-		 pairNameWithId[d.id] = d.name;
+            //console.log(d);
+            if (!d.FIPS == '')
+            {
+                pairRateWithId[d.FIPS] = +d.Active;
+                pairNameWithId[d.FIPS] = d.Admin2;
+            }
 		 });
+        console.log(pairRateWithId, pairNameWithId);
+
 		 svg.append("g")
 		 .attr("class", "county")
 		 .selectAll("path")
