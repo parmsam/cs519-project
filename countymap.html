@@ -137,7 +137,7 @@
 				d3.select(this).transition().duration(300).style({'opacity': 1, 'stroke': 'black', 'stroke-width': 1.5});
 				div.transition().duration(300)
 				.style("opacity", 1)
-				div.text(covidData[d.id].Admin2 + ": " + covidData[d.id].Deaths)
+				div.text(covidData[d.id].Admin2 + "County, " + covidData[d.id].Province_State + ": "+ covidData[d.id].Deaths)
 				.style("left", (d3.event.pageX) + "px")
 				.style("top", (d3.event.pageY -30) + "px");
 			})
