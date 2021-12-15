@@ -91,7 +91,7 @@ function wrap(text, width) {
 
 
 
-var csv_file_name = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/" +
+var csv_file_name = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" +
   yesterday_date +
 ".csv";
 
@@ -194,7 +194,7 @@ function(data) {
 
 //color.domain([0,1]); // setting the range of the input data
 // Load GeoJSON data and merge with states data
-  d3.json("https://raw.githubusercontent.com/parmsam/covid-19-narrative-viz-indy/master/us-states.json",
+  d3.json("https://raw.githubusercontent.com/parmsam/cs519-project/main/county_formatted.json",
   function(json) {
 
     // Loop through each state data value in the .csv file
