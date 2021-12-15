@@ -91,7 +91,7 @@ function wrap(text, width) {
 
 
 
-var csv_file_name = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" +
+var csv_file_name = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/" +
   yesterday_date +
 ".csv";
 
@@ -193,8 +193,8 @@ function(data) {
   var color_scale = d3.scaleLinear().domain([0, max_rate]).range(['white', rateColor]);
 
 //color.domain([0,1]); // setting the range of the input data
-// Load GeoJSON data and merge with states data
-  d3.json("https://raw.githubusercontent.com/parmsam/cs519-project/main/county_formatted.json",
+// Load GeoJSON data and merge with county data
+  d3.json("https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json",
   function(json) {
 
     // Loop through each state data value in the .csv file
@@ -202,47 +202,49 @@ function(data) {
 
     	// Grab State Name
     	var dataState = data[i].Province_State;
+	    
+	// Grab county fips code 
+	var dataFips = data[i].FIPS;
 
     	// Grab data value
     	var mystate = data[i].Province_State;
     	var confirmed	 = data[i].Confirmed	;
     	var deaths = data[i].Deaths;
     	var recovered = data[i].Recovered;
-      var tested = data[i].People_Tested;
-      var hospitalized = data[i].People_Hospitalized;
+      	var tested = data[i].People_Tested;
+      	var hospitalized = data[i].People_Hospitalized;
 
     	var incident_rate = data[i].Incident_Rate;
     	var mortality_rate = data[i].Mortality_Rate;
     	var test_rate = data[i].Testing_Rate;
     	var hospitalization_rate = data[i].Hospitalization_Rate;
 
-      var last_update = d3.timeParse("%Y-%m-%d %H:%M:%S")(data[1].Last_Update);
+      	var last_update = d3.timeParse("%Y-%m-%d %H:%M:%S")(data[1].Last_Update);
 
     	// Find the corresponding state inside the GeoJSON
     	for (var j = 0; j < json.features.length; j++)  {
     		var jsonState = json.features[j].properties.name;
+		var jsonFIPS = json.features[j].id;
 
-    		if (dataState == jsonState) {
+    		if (jsonFIPS == jsonFIPS) {
 
     		// Copy the data value into the JSON
-        json.features[j].properties.mystate = mystate;
-        json.features[j].properties.confirmed = confirmed;
-        json.features[j].properties.deaths = deaths;
-        json.features[j].properties.recovered = recovered;
-        json.features[j].properties.tested = tested;
-        json.features[j].properties.hospitalized = hospitalized;
+			json.features[j].properties.mystate = mystate;
+			json.features[j].properties.confirmed = confirmed;
+			json.features[j].properties.deaths = deaths;
+			json.features[j].properties.recovered = recovered;
+			json.features[j].properties.tested = tested;
+			json.features[j].properties.hospitalized = hospitalized;
 
-        json.features[j].properties.incident_rate = incident_rate;
-        json.features[j].properties.mortality_rate = mortality_rate;
-        json.features[j].properties.test_rate = test_rate;
-        json.features[j].properties.hospitalization_rate = hospitalization_rate;
+			json.features[j].properties.incident_rate = incident_rate;
+			json.features[j].properties.mortality_rate = mortality_rate;
+			json.features[j].properties.test_rate = test_rate;
+			json.features[j].properties.hospitalization_rate = hospitalization_rate;
 
-        json.features[j].properties.hospitalization_rate = hospitalization_rate;
-        //json.features[j].properties.last_update = last_update;
-
-
-    		// Stop looking through the JSON
-    		break;
+			json.features[j].properties.hospitalization_rate = hospitalization_rate;
+			//json.features[j].properties.last_update = last_update;
+			// Stop looking through the JSON
+			break;
     		}
     	}
     }
