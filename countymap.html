@@ -83,6 +83,7 @@
 		 .style("margin", "-15px auto");
 		 var path = d3.geo.path()
 		 
+		 
 		queue()
 		 .defer(d3.json, "us.json")
 		 .defer(d3.csv, "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/11-01-2021.csv")
@@ -137,7 +138,7 @@
 				d3.select(this).transition().duration(300).style({'opacity': 1, 'stroke': 'black', 'stroke-width': 1.5});
 				div.transition().duration(300)
 				.style("opacity", 1)
-				div.text(covidData[d.id].Admin2 + "County, " + covidData[d.id].Province_State + ": "+ covidData[d.id].Deaths)
+				div.text(covidData[d.id].Admin2 + " County, " + covidData[d.id].Province_State + ": "+ covidData[d.id].Deaths)
 				.style("left", (d3.event.pageX) + "px")
 				.style("top", (d3.event.pageY -30) + "px");
 			})
@@ -178,6 +179,26 @@
 		 .attr("y", 540)
 		 .attr("class", "legend_title")
 		 .text(function(){return legend_title});
+
+		var caseButton = d3.select("#case-button");
+		var deathButton = d3.select("#death-button");
+		
+		caseButton
+		    .on("click", function() {
+		      rateColor = "blue";
+		      rateSelect = "incident_rate";
+		      d3.selectAll("#legend1 > *").remove();
+		      d3.selectAll("#my_dataviz_usa > *").remove();
+		      updateData();
+		  })
+
+		deathButton
+		    .on("click", function() {
+		      rateColor = "red";
+		      rateSelect = "mortality_rate";
+		      d3.selectAll("#legend1 > *").remove();
+		      d3.selectAll("#my_dataviz_usa > *").remove();
+		      updateData();
 
 		</script>
 
