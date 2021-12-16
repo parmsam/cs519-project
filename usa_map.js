@@ -224,7 +224,7 @@ function(data) {
     	// Find the corresponding state inside the GeoJSON
     	for (var j = 0; j < json.features.length; j++)  {
     		var jsonState = json.features[j].properties.NAME;
-		var jsonFIPS = json.features[j].id;
+		var jsonFIPS = json.features[j].properties.id;
 
     		if (jsonFIPS == jsonFIPS) {
 
