@@ -36,6 +36,7 @@ else var yesterday_day = (yesterday.getDate());
 var yesterday_date = month + '-' + yesterday_day.toString() + '-' + today.getFullYear().toString(); //added expliict type conversions
 
 function numberWithCommas(x) {
+  if (x == undefined) return '';
   return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   // return (x).toLocaleString('en')
 }
