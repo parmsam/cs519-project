@@ -91,7 +91,7 @@ function wrap(text, width) {
 
 
 
-var csv_file_name = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/" +
+var csv_file_name = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" +
   yesterday_date +
 ".csv";
 
