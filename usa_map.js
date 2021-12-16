@@ -222,6 +222,7 @@ function(data) {
       	var last_update = d3.timeParse("%Y-%m-%d %H:%M:%S")(data[1].Last_Update);
 
     	// Find the corresponding state inside the GeoJSON
+      if (dataFips != '') {
     	for (var j = 0; j < json.features.length; j++)  {
     		var jsonState = json.features[j].properties.NAME;
 		var jsonFIPS = json.features[j].properties.id;
@@ -247,6 +248,7 @@ function(data) {
 			break;
     		}
     	}
+    }
     }
 
     // Bind the data to the SVG and create one path per GeoJSON feature
