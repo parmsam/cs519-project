@@ -223,7 +223,7 @@ function(data) {
 
     	// Find the corresponding state inside the GeoJSON
     	for (var j = 0; j < json.features.length; j++)  {
-    		var jsonState = json.features[j].properties.name;
+    		var jsonState = json.features[j].properties.NAME;
 		var jsonFIPS = json.features[j].id;
 
     		if (jsonFIPS == jsonFIPS) {
@@ -264,7 +264,7 @@ function(data) {
                     .style("opacity", 0.9)
                     .style("left", (d3.event.pageX) + "px")
                     .style("top", (d3.event.pageY) + "px");
-              div.html("<b>" + d.properties.name + "</b>" + "<br>" +
+              div.html("<b>" + d.properties.NAME + "</b>" + "<br>" +
                 "Cases: " + numberWithCommas(d.properties.confirmed) +"<br>" +
                 "Deaths: " + numberWithCommas(d.properties.deaths) +"<br>" +
                 // "Hosp.: " + d.properties.hospitalized + "<br>" +
