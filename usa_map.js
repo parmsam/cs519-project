@@ -226,7 +226,7 @@ function(data) {
     		var jsonState = json.features[j].properties.NAME;
 		var jsonFIPS = json.features[j].properties.id;
 
-    		if (jsonFIPS == jsonFIPS) {
+    		if (dataFips == jsonFIPS) {
 
     		// Copy the data value into the JSON
 			json.features[j].properties.mystate = mystate;
