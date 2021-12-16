@@ -205,7 +205,7 @@ function(data) {
 	    
 	// Grab county fips code 
 	var dataFips = data[i].FIPS;
-
+      
     	// Grab data value
     	var mystate = data[i].Province_State;
     	var confirmed	 = data[i].Confirmed;
@@ -222,13 +222,15 @@ function(data) {
       	var last_update = d3.timeParse("%Y-%m-%d %H:%M:%S")(data[1].Last_Update);
 
     	// Find the corresponding state inside the GeoJSON
+      //console.log(json.features);
       if (dataFips != '') {
+        //console.log(dataFips);
     	for (var j = 0; j < json.features.length; j++)  {
-    		var jsonState = json.features[j].properties.NAME;
-		var jsonFIPS = json.features[j].properties.id;
-
+    		var jsonState = json.features[j].properties.name;
+		var jsonFIPS = json.features[j].id;
+        //
     		if (dataFips == jsonFIPS) {
-
+          //console.log(dataFips);
     		// Copy the data value into the JSON
 			json.features[j].properties.mystate = mystate;
 			json.features[j].properties.confirmed = confirmed;
@@ -421,7 +423,7 @@ function hue(h) {
         //svg.style("background-color", d3.hsl(h/1000000000, 0.8, 0.8));
         yesterday_date = formatDate(h);
         yesterday = h;
-        csv_file_name = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports_us/" +
+        csv_file_name = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" +
           yesterday_date + ".csv";
 
         //attempt to fade map out (not sure if this works)
