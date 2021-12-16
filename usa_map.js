@@ -124,10 +124,10 @@ d3.csv(csv_file_name,
 function(data) {
   var sum_confirmed = d3.sum( data, function(d) { return +d['Confirmed']});
   var sum_deaths = d3.sum( data, function(d) { return +d['Deaths']});
-  var sum_people_tested = d3.sum( data, function(d) { return +d['People_Tested']});
-  var sum_people_recovered = d3.sum( data, function(d) { return +d['Recovered']});
+//   var sum_people_tested = d3.sum( data, function(d) { return +d['People_Tested']});
+//   var sum_people_recovered = d3.sum( data, function(d) { return +d['Recovered']});
   var sum_people_active = d3.sum( data, function(d) { return +d['Active']});
-  var sum_people_hospitalized = d3.sum( data, function(d) { return +d['People_Hospitalized']});
+//   var sum_people_hospitalized = d3.sum( data, function(d) { return +d['People_Hospitalized']});
 
   svg.append("text")
 		.text(numberWithCommas(sum_confirmed) + " U.S. Total Cases")
@@ -141,17 +141,17 @@ function(data) {
 		.attr("y", 560)
     .attr("fill","crimson");
 
-  svg.append("text")
-		.text(numberWithCommas(sum_people_tested) + " U.S. Tests")
-		.attr("x",margin.left + ((width + 100)/1.6))
-		.attr("y", 560)
-    .attr("fill","green");
+//   svg.append("text")
+// 		.text(numberWithCommas(sum_people_tested) + " U.S. Tests")
+// 		.attr("x",margin.left + ((width + 100)/1.6))
+// 		.attr("y", 560)
+//     .attr("fill","green");
 
-  svg.append("text")
-		.text(numberWithCommas(sum_people_recovered) + " U.S. Recoveries")
-		.attr("x",margin.left + ((width + 100)/7.5))
-		.attr("y", 620)
-    .attr("fill","steelblue");
+//   svg.append("text")
+// 		.text(numberWithCommas(sum_people_recovered) + " U.S. Recoveries")
+// 		.attr("x",margin.left + ((width + 100)/7.5))
+// 		.attr("y", 620)
+//     .attr("fill","steelblue");
 
   svg.append("text")
 		.text(numberWithCommas(sum_people_active) + " U.S. Active Cases")
@@ -159,11 +159,11 @@ function(data) {
 		.attr("y", 590)
     .attr("fill","royalblue");
 
-  svg.append("text")
-  		.text(numberWithCommas(sum_people_hospitalized) + " U.S. Hospitalized")
-  		.attr("x",margin.left + ((width + 100)/2.6))
-  		.attr("y", 590)
-      .attr("fill","purple");
+//   svg.append("text")
+//   		.text(numberWithCommas(sum_people_hospitalized) + " U.S. Hospitalized")
+//   		.attr("x",margin.left + ((width + 100)/2.6))
+//   		.attr("y", 590)
+//       .attr("fill","purple");
 
 
   var max_rate = d3.max( data, function(d) {
@@ -208,16 +208,16 @@ function(data) {
 
     	// Grab data value
     	var mystate = data[i].Province_State;
-    	var confirmed	 = data[i].Confirmed	;
+    	var confirmed	 = data[i].Confirmed;
     	var deaths = data[i].Deaths;
-    	var recovered = data[i].Recovered;
-      	var tested = data[i].People_Tested;
-      	var hospitalized = data[i].People_Hospitalized;
+//     	var recovered = data[i].Recovered;
+//	var tested = data[i].People_Tested;
+//      var hospitalized = data[i].People_Hospitalized;
 
     	var incident_rate = data[i].Incident_Rate;
-    	var mortality_rate = data[i].Mortality_Rate;
-    	var test_rate = data[i].Testing_Rate;
-    	var hospitalization_rate = data[i].Hospitalization_Rate;
+//     	var mortality_rate = data[i].Mortality_Rate;
+//     	var test_rate = data[i].Testing_Rate;
+//     	var hospitalization_rate = data[i].Hospitalization_Rate;
 
       	var last_update = d3.timeParse("%Y-%m-%d %H:%M:%S")(data[1].Last_Update);
 
@@ -232,16 +232,16 @@ function(data) {
 			json.features[j].properties.mystate = mystate;
 			json.features[j].properties.confirmed = confirmed;
 			json.features[j].properties.deaths = deaths;
-			json.features[j].properties.recovered = recovered;
-			json.features[j].properties.tested = tested;
-			json.features[j].properties.hospitalized = hospitalized;
+// 			json.features[j].properties.recovered = recovered;
+// 			json.features[j].properties.tested = tested;
+// 			json.features[j].properties.hospitalized = hospitalized;
 
 			json.features[j].properties.incident_rate = incident_rate;
-			json.features[j].properties.mortality_rate = mortality_rate;
-			json.features[j].properties.test_rate = test_rate;
-			json.features[j].properties.hospitalization_rate = hospitalization_rate;
+// 			json.features[j].properties.mortality_rate = mortality_rate;
+// 			json.features[j].properties.test_rate = test_rate;
+// 			json.features[j].properties.hospitalization_rate = hospitalization_rate;
 
-			json.features[j].properties.hospitalization_rate = hospitalization_rate;
+// 			json.features[j].properties.hospitalization_rate = hospitalization_rate;
 			//json.features[j].properties.last_update = last_update;
 			// Stop looking through the JSON
 			break;
@@ -268,11 +268,12 @@ function(data) {
                 "Cases: " + numberWithCommas(d.properties.confirmed) +"<br>" +
                 "Deaths: " + numberWithCommas(d.properties.deaths) +"<br>" +
                 // "Hosp.: " + d.properties.hospitalized + "<br>" +
-                 "Tests: " + numberWithCommas(d.properties.tested) + "<br><br>" +
+//                  "Tests: " + numberWithCommas(d.properties.tested) + "<br><br>" +
                 "Case Rate (per 100K): " + numberWithCommas(Math.round(d.properties.incident_rate)) + "<br>" +
-                "Death Rate (per 100CCs): " + numberWithCommas(Math.round(d.properties.mortality_rate*100)/100) + "<br>" +
+//                 "Death Rate (per 100CCs): " + numberWithCommas(Math.round(d.properties.mortality_rate*100)/100) + "<br>" +
                 // "Hosp Rate (%): " + Math.round(d.properties.hospitalization_rate) + "<br>"
-                 "Testing Rate (per 100K): " + numberWithCommas(Math.round(d.properties.test_rate*10)/10) + "<br>"
+//                  "Testing Rate (per 100K): " + numberWithCommas(Math.round(d.properties.test_rate*10)/10) + 
+		"<br>"
               )
           	})
 
@@ -304,7 +305,7 @@ function(data) {
         .attr("y", 0 + 50)
         .attr("text-anchor", "middle")
         .style("font-size", "20px")
-        .text("COVID-19 State "+title_text(rateSelect)+ " in USA for " +
+        .text("COVID-19 County "+title_text(rateSelect)+ " in USA for " +
         weekday[(yesterday).getDay()] + " " +
           monthShortNames[(yesterday).getMonth()] + " " +
           (yesterday).getDate()
