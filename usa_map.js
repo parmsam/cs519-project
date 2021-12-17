@@ -209,7 +209,7 @@ function updateData() {
           for (var i = 0; i < data.length; i++) {
 
             // Grab county fips code 
-            var dataFips = data[i].FIPS;
+            var dataFips = data[i].FIPS < 9999 ? '0' + data[i].FIPS : data[i].FIPS;
 
             // Grab data value
             // var mystate = ;
