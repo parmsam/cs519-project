@@ -196,7 +196,7 @@ div.tooltip {
   position: absolute;
   top: 832px;
   left: 48%;
-  background: firebrick;
+  background: orange;
   padding-right: 26px;
   border-radius: 3px;
   border: none;
@@ -214,7 +214,7 @@ div.tooltip {
   position: absolute;
   top: 832px;
   left: 63%;
-  background: forestgreen;
+  background: firebrick;
   padding-right: 26px;
   border-radius: 3px;
   border: none;

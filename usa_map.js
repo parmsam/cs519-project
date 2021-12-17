@@ -485,7 +485,7 @@ caseButton
 
 fatalityButton
   .on("click", function () {
-    rateColor = "green";
+    rateColor = "orange";
     rateSelect = "case_fatality_ratio";
     d3.selectAll("#legend1 > *").remove();
     d3.selectAll("#my_dataviz_usa > *").remove();
