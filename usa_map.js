@@ -160,7 +160,7 @@ function updateData() {
           return "Cases per 100K Persons";
         }
         else if (rateSelect === "case_fatality_ratio") {
-          return "Number recorded deaths / Number cases";
+          return "Case Fatality Ratio (Recorded deaths/Cases)";
         }
         else if (rateSelect === "total_deaths") {
           return "Total Deaths";
@@ -385,7 +385,7 @@ function hue(h) {
 var formatDateIntoYear = d3.timeFormat("%b");
 var formatDate = d3.timeFormat("%m-%d-%Y");
 
-var startDate = new Date("04-12-2020"),
+var startDate = new Date("12-01-2020"),
   endDate = new Date(yesterday_date);
 
 
