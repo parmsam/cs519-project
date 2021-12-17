@@ -24,19 +24,12 @@ h3 {
  margin-left: auto;
  margin-right: auto;
  max-width: 50%;
- /* text-decoration: underline; */
 }
 
 .my_dataviz {
   text-align: center;
-  /* position: relative; */
   width: 100%;
   height: 100%;
-  /* display: inline-block;
- position: relative;
- width: 100%;
- vertical-align: top;
- overflow: hidden; */
 }
 
 .svg-content {
@@ -47,9 +40,6 @@ h3 {
 }
 .legend_usa {
   text-align: center;
-  /* position: relative; */
-  /* width: 95%;
-  height: 100%; */
 }
 
 
@@ -59,7 +49,6 @@ h3 {
   width: 100%;
   height: 100%;
   left:2%;
-  /* right:72%; */
 }
 
 
@@ -131,12 +120,9 @@ div.tooltip {
  	position: absolute;
 	text-align: center;
 	width: 120px;
-	/* height: 80px; */
 	padding: 2px;
 	background: snow;
-/* border: 1px; */
   border: 1.5px solid maroon;
-  /* border-color: black; */
 	border-radius: 8px;
 	pointer-events: none;
   font-size: 13px;
@@ -188,30 +174,8 @@ div.tooltip {
   stroke-width: 1.25px;
 }
 
-#play-button {
-  position: absolute;
-  /* top: 140px;
-  left: 50px; */
-  left:48%;
-  background: #f08080;
-  padding-right: 26px;
-  border-radius: 3px;
-  border: none;
-  color: white;
-  margin: 0;
-  padding: 0 12px;
-  /* width: 60px; */
-  cursor: pointer;
-  height: 30px;
-}
-#play-button:hover {
-  background-color: #696969;
-}
-
 #case-button {
   position: absolute;
-  /* top: 140px;
-  left: 50px; */
   top: 832px;
   left:33%;
   background: mediumblue;
@@ -221,7 +185,6 @@ div.tooltip {
   color: white;
   margin: 0;
   padding: 0 12px;
-  /* width: 60px; */
   cursor: pointer;
   height: 30px;
 }
@@ -231,8 +194,6 @@ div.tooltip {
 
 #death-button {
   position: absolute;
-  /* top: 140px;
-  left: 50px; */
   top: 832px;
   left: 48%;
   background: firebrick;
@@ -242,7 +203,6 @@ div.tooltip {
   color: white;
   margin: 0;
   padding: 0 12px;
-  /* width: 60px; */
   cursor: pointer;
   height: 30px;
 }
@@ -254,7 +214,6 @@ div.tooltip {
   position: absolute;
   top: 832px;
   left: 63%;
-  /* left:10%; */
   background: forestgreen;
   padding-right: 26px;
   border-radius: 3px;
@@ -262,7 +221,6 @@ div.tooltip {
   color: white;
   margin: 0;
   padding: 0 12px;
-  /* width: 60px; */
   cursor: pointer;
   height: 30px;
 }
