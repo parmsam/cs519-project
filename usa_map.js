@@ -275,15 +275,9 @@ function updateData() {
               div.html("<b>" + "State: " + d.properties.mystate + "</b>" + "<br>" +
                        "<b>" + "County: " + d.properties.NAME + "</b>" + "<br>" +
                 "Total Cases: " + numberWithCommas(d.properties.confirmed) + "<br>" +
-                "Active Cases: " + numberWithCommas(d.properties.active_cases) + "<br>" +
-                "Recovered: " + numberWithCommas(d.properties.recovered) + "<br>" +
                 "Deaths: " + numberWithCommas(d.properties.total_deaths) + "<br>" +
-                // "Hosp.: " + d.properties.hospitalized + "<br>" +
-                //                  "Tests: " + numberWithCommas(d.properties.tested) + "<br><br>" +
                 "Case Rate (per 100K): " + numberWithCommas(Math.round(d.properties.incident_rate)) + "<br>" +
                 "Fatality Ratio : " + numberWithCommas(Math.round(d.properties.case_fatality_ratio*100)/100) + "<br>" +
-                // "Hosp Rate (%): " + Math.round(d.properties.hospitalization_rate) + "<br>"
-                //                  "Testing Rate (per 100K): " + numberWithCommas(Math.round(d.properties.test_rate*10)/10) +
                 "<br>"
               )
             })
@@ -326,24 +320,24 @@ function updateData() {
             )
             .attr("font-weight", "bold");
 
-          playButton
-            .on("click", function () {
-              var button = d3.select(this);
-              if (button.text() == "Pause") {
-                moving = false;
-                clearInterval(timer);
-                // timer = 0;
-                button.text("Play");
-              } else {
-                moving = true;
-                timer = setInterval(step, 650);
-                button.text("Pause");
-              }
-              console.log("Slider moving: " + moving);
-            })
-
-
-        });
+        //   playButton
+        //     .on("click", function () {
+        //       var button = d3.select(this);
+        //       if (button.text() == "Pause") {
+        //         moving = false;
+        //         clearInterval(timer);
+        //         // timer = 0;
+        //         button.text("Play");
+        //       } else {
+        //         moving = true;
+        //         timer = setInterval(step, 650);
+        //         button.text("Pause");
+        //       }
+        //       console.log("Slider moving: " + moving);
+        //     })
+        //
+        //
+        // });
 
       d3.selectAll("#legend1 > *").remove();
 
@@ -537,7 +531,7 @@ var moving = false;
 var currentValue = 0;
 var targetValue = width_slider;
 
-var playButton = d3.select("#play-button");
+// var playButton = d3.select("#play-button");
 var caseButton = d3.select("#case-button");
 var fatalityButton = d3.select("#death-button");
 var deathsButton = d3.select("#testing-button");
@@ -550,7 +544,7 @@ function step() {
     currentValue = 0;
     clearInterval(timer);
     // timer = 0;
-    playButton.text("Play");
+    // playButton.text("Play");
     console.log("Slider moving: " + moving);
   }
 }
