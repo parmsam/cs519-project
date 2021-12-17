@@ -105,7 +105,7 @@ var rateSelect = "incident_rate";
 
 // Load in my states data!
 function updateData() {
-
+  console.log('updatedata', rateColor, rateSelect);
   //Create SVG element and append map to the SVG
   var svg = d3.select("#my_dataviz_usa")
     .append("svg")
@@ -169,29 +169,36 @@ function updateData() {
 
       var max_rate = d3.max(data, function (d) {
         if (rateSelect === "incident_rate") {
-          return +d['Incident_Rate'];
+
+          return d['FIPS'] == '' || d['Admin2'] == 'Unassigned'  ? 0 : +d['Incident_Rate'];
         }
-        else if (rateSelect === "mortality_rate") {
-          return +d['Mortality_Rate'];
+        else if (rateSelect === "case_fatality_ratio") {
+          return d['FIPS'] == '' || d['Admin2'] == 'Unassigned' ? 0 : +d['Case_Fatality_Ratio'];
         }
-        else if (rateSelect === "test_rate") {
-          return +d['Testing_Rate'];
+        else if (rateSelect === "total_deaths") {
+          //console.log(d['Deaths']);
+          return d['FIPS'] == '' || d['Admin2'] == 'Unassigned' ? 0 : +d['Deaths'];
         }
       });
-
+      
+      console.log('max_rate', max_rate);
       var title_text = function (rateSelect) {
         if (rateSelect === "incident_rate") {
           return "Cases per 100K Persons";
         }
-        else if (rateSelect === "mortality_rate") {
+        else if (rateSelect === "case_fatality_ratio") {
           return "Deaths per 100 Confirmed Cases (CCs)";
         }
-        else if (rateSelect === "test_rate") {
-          return "Tests per 100K Persons";
+        else if (rateSelect === "total_deaths") {
+          return "Total Deaths";
         };
       }
 
-      var color_scale = d3.scaleLinear().domain([0, max_rate]).range(['white', rateColor]);
+      //const logScale = d3.scaleLog().domain([0, max_rate]);
+      //const color_scale = d3.scaleSequential((d) => d3.interpolateReds(logScale(d)));
+        
+      var exponent = rateSelect == 'total_deaths' ? 0.3 : 0.7;
+      var color_scale = d3.scalePow().exponent(exponent).domain([0, max_rate]).range(['white', rateColor]);
 
       //color.domain([0,1]); // setting the range of the input data
       // Load GeoJSON data and merge with county data
@@ -201,16 +208,13 @@ function updateData() {
           // Loop through each state data value in the .csv file
           for (var i = 0; i < data.length; i++) {
 
-            // Grab State Name
-            var dataState = data[i].Province_State;
-
             // Grab county fips code 
             var dataFips = data[i].FIPS;
 
             // Grab data value
-            var mystate = data[i].Province_State;
-            var confirmed = data[i].Confirmed;
-            var deaths = data[i].Deaths;
+            // var mystate = ;
+            // var confirmed = ;
+            // var deaths = ;
             //     	var recovered = data[i].Recovered;
             //	var tested = data[i].People_Tested;
             //      var hospitalized = data[i].People_Hospitalized;
@@ -233,15 +237,15 @@ function updateData() {
                 if (dataFips == jsonFIPS) {
                   //console.log(dataFips);
                   // Copy the data value into the JSON
-                  json.features[j].properties.mystate = mystate;
-                  json.features[j].properties.confirmed = confirmed;
-                  json.features[j].properties.deaths = deaths;
+                  json.features[j].properties.mystate = data[i].Province_State;
+                  json.features[j].properties.confirmed = data[i].Confirmed;
+                  json.features[j].properties.total_deaths = data[i].Deaths;
                   // 			json.features[j].properties.recovered = recovered;
                   // 			json.features[j].properties.tested = tested;
                   // 			json.features[j].properties.hospitalized = hospitalized;
 
-                  json.features[j].properties.incident_rate = incident_rate;
-                  // 			json.features[j].properties.mortality_rate = mortality_rate;
+                  json.features[j].properties.incident_rate = data[i].Incident_Rate;
+                  json.features[j].properties.case_fatality_ratio = data[i].Case_Fatality_Ratio;
                   // 			json.features[j].properties.test_rate = test_rate;
                   // 			json.features[j].properties.hospitalization_rate = hospitalization_rate;
 
@@ -271,11 +275,11 @@ function updateData() {
                 .style("top", (d3.event.pageY) + "px");
               div.html("<b>" + d.properties.NAME + "</b>" + "<br>" +
                 "Cases: " + numberWithCommas(d.properties.confirmed) + "<br>" +
-                "Deaths: " + numberWithCommas(d.properties.deaths) + "<br>" +
+                "Deaths: " + numberWithCommas(d.properties.total_deaths) + "<br>" +
                 // "Hosp.: " + d.properties.hospitalized + "<br>" +
                 //                  "Tests: " + numberWithCommas(d.properties.tested) + "<br><br>" +
                 "Case Rate (per 100K): " + numberWithCommas(Math.round(d.properties.incident_rate)) + "<br>" +
-                //                 "Death Rate (per 100CCs): " + numberWithCommas(Math.round(d.properties.mortality_rate*100)/100) + "<br>" +
+                "Fatality Ratio : " + numberWithCommas(Math.round(d.properties.case_fatality_ratio*100)/100) + "<br>" +
                 // "Hosp Rate (%): " + Math.round(d.properties.hospitalization_rate) + "<br>"
                 //                  "Testing Rate (per 100K): " + numberWithCommas(Math.round(d.properties.test_rate*10)/10) + 
                 "<br>"
@@ -292,16 +296,19 @@ function updateData() {
               // Get data value
               //var value = d.properties.mystate;
               // var value = d.properties.incident_rate;
+              
               var value = d.properties[rateSelect];
-
+              //console.log(rateSelect, value);
               if (value) {
                 //If value exists…
                 // return color(value);
-                return color_scale(value);
+                var color = color_scale(value)
+                //console.log(value, max_rate, color, d.properties);
+                return color;
               } else {
                 //If value is undefined…
                 // return "rgb(213,222,217)";
-                return color_scale(value);
+                return '#aaaaaa'//color_scale(1);
               }
             });
 
@@ -530,8 +537,8 @@ var targetValue = width_slider;
 
 var playButton = d3.select("#play-button");
 var caseButton = d3.select("#case-button");
-var deathButton = d3.select("#death-button");
-var testingButton = d3.select("#testing-button");
+var fatalityButton = d3.select("#death-button");
+var deathsButton = d3.select("#testing-button");
 
 function step() {
   hue(x.invert(currentValue));
@@ -554,19 +561,19 @@ caseButton
     updateData();
   })
 
-deathButton
+fatalityButton
   .on("click", function () {
-    rateColor = "red";
-    rateSelect = "mortality_rate";
+    rateColor = "green";
+    rateSelect = "case_fatality_ratio";
     d3.selectAll("#legend1 > *").remove();
     d3.selectAll("#my_dataviz_usa > *").remove();
     updateData();
 
   })
-testingButton
+deathsButton
   .on("click", function () {
-    rateColor = "green";
-    rateSelect = "test_rate";
+    rateColor = "red";
+    rateSelect = "total_deaths";
     d3.selectAll("#legend1 > *").remove();
     d3.selectAll("#my_dataviz_usa > *").remove();
     updateData();
