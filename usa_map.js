@@ -180,7 +180,7 @@ function updateData() {
           return d['FIPS'] == '' || d['Admin2'] == 'Unassigned' ? 0 : +d['Deaths'];
         }
       });
-      
+
       console.log('max_rate', max_rate);
       var title_text = function (rateSelect) {
         if (rateSelect === "incident_rate") {
@@ -196,7 +196,7 @@ function updateData() {
 
       //const logScale = d3.scaleLog().domain([0, max_rate]);
       //const color_scale = d3.scaleSequential((d) => d3.interpolateReds(logScale(d)));
-        
+
       var exponent = rateSelect == 'total_deaths' ? 0.3 : 0.7;
       var color_scale = d3.scalePow().exponent(exponent).domain([0, max_rate]).range(['white', rateColor]);
 
@@ -208,7 +208,7 @@ function updateData() {
           // Loop through each state data value in the .csv file
           for (var i = 0; i < data.length; i++) {
 
-            // Grab county fips code 
+            // Grab county fips code
             var dataFips = data[i].FIPS < 9999 ? '0' + data[i].FIPS : data[i].FIPS;
 
             // Grab data value
@@ -273,7 +273,8 @@ function updateData() {
                 .style("opacity", 0.9)
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY) + "px");
-              div.html("<b>" + d.properties.NAME + "</b>" + "<br>" +
+              div.html("<b>" + "State: " + d.properties.mystate + "</b>" + "<br>" +
+                       "<b>" + "County: " + d.properties.NAME + "</b>" + "<br>" +
                 "Cases: " + numberWithCommas(d.properties.confirmed) + "<br>" +
                 "Deaths: " + numberWithCommas(d.properties.total_deaths) + "<br>" +
                 // "Hosp.: " + d.properties.hospitalized + "<br>" +
@@ -281,7 +282,7 @@ function updateData() {
                 "Case Rate (per 100K): " + numberWithCommas(Math.round(d.properties.incident_rate)) + "<br>" +
                 "Fatality Ratio : " + numberWithCommas(Math.round(d.properties.case_fatality_ratio*100)/100) + "<br>" +
                 // "Hosp Rate (%): " + Math.round(d.properties.hospitalization_rate) + "<br>"
-                //                  "Testing Rate (per 100K): " + numberWithCommas(Math.round(d.properties.test_rate*10)/10) + 
+                //                  "Testing Rate (per 100K): " + numberWithCommas(Math.round(d.properties.test_rate*10)/10) +
                 "<br>"
               )
             })
@@ -296,7 +297,7 @@ function updateData() {
               // Get data value
               //var value = d.properties.mystate;
               // var value = d.properties.incident_rate;
-              
+
               var value = d.properties[rateSelect];
               //console.log(rateSelect, value);
               if (value) {
