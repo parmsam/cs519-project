@@ -53,7 +53,6 @@ var path = d3.geoPath().projection(projection);
 var color = d3.scaleLinear()
   .range(["blue"]);
 
-
 var legendText = ["Incident Rate"];
 
 // JS wrap text function (wrapping function taken from https://stackoverflow.com/questions/24784302/wrapping-text-in-d3/24785497)
@@ -166,7 +165,6 @@ function updateData() {
       //   		.attr("y", 590)
       //       .attr("fill","purple");
 
-
       var max_rate = d3.max(data, function (d) {
         if (rateSelect === "incident_rate") {
 
@@ -240,7 +238,8 @@ function updateData() {
                   json.features[j].properties.mystate = data[i].Province_State;
                   json.features[j].properties.confirmed = data[i].Confirmed;
                   json.features[j].properties.total_deaths = data[i].Deaths;
-                  // 			json.features[j].properties.recovered = recovered;
+                  json.features[j].properties.active_cases = data[i].Active;
+                  json.features[j].properties.recovered = data[i].Recovered;
                   // 			json.features[j].properties.tested = tested;
                   // 			json.features[j].properties.hospitalized = hospitalized;
 
@@ -275,7 +274,9 @@ function updateData() {
                 .style("top", (d3.event.pageY) + "px");
               div.html("<b>" + "State: " + d.properties.mystate + "</b>" + "<br>" +
                        "<b>" + "County: " + d.properties.NAME + "</b>" + "<br>" +
-                "Cases: " + numberWithCommas(d.properties.confirmed) + "<br>" +
+                "Total Cases: " + numberWithCommas(d.properties.confirmed) + "<br>" +
+                "Active Cases: " + numberWithCommas(d.properties.active_cases) + "<br>" +
+                "Recovered: " + numberWithCommas(d.properties.recovered) + "<br>" +
                 "Deaths: " + numberWithCommas(d.properties.total_deaths) + "<br>" +
                 // "Hosp.: " + d.properties.hospitalized + "<br>" +
                 //                  "Tests: " + numberWithCommas(d.properties.tested) + "<br><br>" +
