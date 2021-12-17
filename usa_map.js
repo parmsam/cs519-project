@@ -119,7 +119,7 @@ function updateData() {
     function (data) {
       var sum_confirmed = d3.sum(data, function (d) { return +d['Confirmed'] });
       var sum_deaths = d3.sum(data, function (d) { return +d['Deaths'] });
-      var sum_people_active = d3.sum(data, function (d) { return +d['Active'] });
+//       var sum_people_active = d3.sum(data, function (d) { return +d['Active'] });
 
       svg.append("text")
         .text(numberWithCommas(sum_confirmed) + " U.S. Total Cases")
@@ -134,11 +134,11 @@ function updateData() {
         .attr("fill", "crimson");
 
 
-      svg.append("text")
-        .text(numberWithCommas(sum_people_active) + " U.S. Active Cases")
-        .attr("x", margin.left + ((width + 100) / 7.5))
-        .attr("y", 590)
-        .attr("fill", "royalblue");
+//       svg.append("text")
+//         .text(numberWithCommas(sum_people_active) + " U.S. Active Cases")
+//         .attr("x", margin.left + ((width + 100) / 7.5))
+//         .attr("y", 590)
+//         .attr("fill", "royalblue");
 
       var max_rate = d3.max(data, function (d) {
         if (rateSelect === "incident_rate") {
@@ -160,7 +160,7 @@ function updateData() {
           return "Cases per 100K Persons";
         }
         else if (rateSelect === "case_fatality_ratio") {
-          return "Deaths per 100 Confirmed Cases (CCs)";
+          return "Number recorded deaths / Number cases";
         }
         else if (rateSelect === "total_deaths") {
           return "Total Deaths";
