@@ -18,7 +18,7 @@ The aim of the project is to develop an interactive choropleth of COVID-19 measu
 * Timeline visualization - alter chart to show covid data over time - 20
 * Additional measure toggles - add toggles to chart additional covid metrics besides cases - 10
 
-# Core files 
+## Core files 
 * `usa_map.js` - d3js code
 * `index.html` - html page
 * `styles.css` - css styles
